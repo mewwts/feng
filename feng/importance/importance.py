@@ -19,6 +19,6 @@ def information_gain(x, y):
     return information_gain
 
 def rank_information_gain(X, y):
-    information_gains = pd.Series(dict([x, information_gain(x,y) for x in X]))
+    information_gains = pd.Series(dict([(x, information_gain(x,y)) for x in X]))
     information_gains.column = ["feature", "information_gain"]
     return information_gains
