@@ -7,7 +7,7 @@ feng is a Python module for smoothly engineering features from your Pandas DataF
 > 
 > -- Xavier Cohort, [after winning one of many Kaggle competitions](http://blog.kaggle.com/2013/04/10/qa-with-xavier-conort/)
 
-Feng aims to help data scientists in what is arguably the most critical part of a machine-learning pipeline: [feature engineering](https://en.wikipedia.org/wiki/Feature_engineering). 
+feng helps data scientists in what is arguably the most critical part of a machine-learning pipeline: [feature engineering](https://en.wikipedia.org/wiki/Feature_engineering). 
 
 It's built for fans of [Pandas](http://pandas.pydata.org/) and makes use of [scikit-learn](http://scikit-learn.org/) pipelines and transformers.
 
