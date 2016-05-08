@@ -2,7 +2,7 @@
 
 feng is a Python module for smoothly engineering features from your Pandas DataFrame so that you can win that Kaggle competition.
 
-### Why Feng?
+### Why feng?
 > *We spent most of our efforts in feature engineering.*
 > 
 > -- Xavier Cohort, [after winning one of many Kaggle competitions](http://blog.kaggle.com/2013/04/10/qa-with-xavier-conort/)
