@@ -4,6 +4,7 @@ python:
     - "3.3"
     - "3.4"
     - "3.5"
+before_install: apt-get build-dep python-scipy
 before_script: pip install coveralls
 script: 
     - "py.test"
