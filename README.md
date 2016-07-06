@@ -14,3 +14,6 @@ It's built for fans of [Pandas](http://pandas.pydata.org/) and makes use of [sci
 > *... some machine learning projects succeed and some fail. What makes the difference? Easily the most important factor is the features used.*
 >
 > -- Pedro Domingos, [A Few Useful Things to Know about Machine Learning](http://homes.cs.washington.edu/~pedrod/papers/cacm12.pdf)
+
+
+Made with ♥️ in Barcelona.
