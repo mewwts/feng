@@ -10,8 +10,11 @@ class SelectivePipeline(Pipeline):
     def fit(self, X, y=None, **fit_params):
         if not self.fields:
             fields = X.columns.values
-        super(SelectivePipeline, self).fit(X[self.fields].copy(), y, **fit_params)
+        super(SelectivePipeline, self).fit(X[self.fields], y, **fit_params)
         return self
 
+    def transform(self, X):
+        return super(SelectivePipeline, self).transform(X[self.fields])
+
     def fit_transform(self, X, y=None, **fit_params):
-        return super(SelectivePipeline, self).fit_transform(X[self.fields].copy(), y, **fit_params)
+        return super(SelectivePipeline, self).fit_transform(X[self.fields], y, **fit_params)

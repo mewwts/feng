@@ -4,6 +4,7 @@ from scipy import sparse
 from sklearn.pipeline import FeatureUnion, _fit_transform_one, _transform_one
 from sklearn.externals.joblib import Parallel, delayed
 
+
 class FriendlyFeatureUnion(FeatureUnion):
     
     def fit_transform(self, X, y=None, **fit_params):
@@ -20,7 +21,7 @@ class FriendlyFeatureUnion(FeatureUnion):
             Xs = np.hstack(Xs)
         return Xs
 
-    def fit(self, X):
+    def transform(self, X):
         Xs = Parallel(n_jobs=self.n_jobs)(
             delayed(_transform_one)(trans, name, X, self.transformer_weights)
             for name, trans in self.transformer_list)
