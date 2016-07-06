@@ -1,0 +1,12 @@
+language: python
+python:
+    - "2.7"
+    - "3.3"
+    - "3.4"
+    - "3.5"
+before_script: pip install coveralls
+script: 
+    - "py.test"
+    - "coverage run --source=feng setup.py test"
+after_success:
+    - coveralls
