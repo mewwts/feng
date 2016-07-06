@@ -1,5 +1,8 @@
 ## feng - feature engineering for machine-learning champions
 
+[![Build Status](https://travis-ci.org/mewwts/feng.svg?branch=master)](https://travis-ci.org/mewwts/feng)
+
+
 feng is a Python module for smoothly engineering features from your Pandas DataFrame so that you can win that Kaggle competition.
 
 ### Why feng?
