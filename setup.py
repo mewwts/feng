@@ -11,7 +11,10 @@ LONG= SHORT + '. For more info check out the README at \'github.com/mewwts/feng\
 setup(
     name='feng',
     version=feng.__version__,
-    packages=['feng'],
+    packages=['feng',
+              'feng.importance',
+              'feng.pipeline',
+              'feng.preprocessing'],
     url='https://github.com/mewwts/feng',
     author=feng.__author__,
     author_email='mats@plysjbyen.net',
