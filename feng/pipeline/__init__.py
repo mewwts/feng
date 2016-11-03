@@ -1,2 +1,2 @@
-from .FriendlyFeatureUnion import FriendlyFeatureUnion
-from .SelectivePipeline import SelectivePipeline
+from .FeatureUnion import FeatureUnion
+from .Pipeline import Pipeline
