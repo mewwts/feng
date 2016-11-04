@@ -18,7 +18,7 @@ class Identity(BaseEstimator, TransformerMixin):
 
 
 def get_identity_pipe(cols):
-    return feng.pipeline.Pipeline([('a', Identity())], cols)
+    return feng.pipeline.Pipeline([('a', Identity())], fields=cols)
 
 def get_identity_pipe_fu(cols):
     return feng.pipeline.FeatureUnion([
@@ -78,7 +78,6 @@ class Tests(unittest.TestCase):
         cols = [1]
         transformed = get_identity_pipe_fu(cols).transform(np_data)
         self.assertTrue((transformed == np_data[:, cols]).all())
-
 
 
 

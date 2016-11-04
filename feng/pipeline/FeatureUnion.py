@@ -8,17 +8,26 @@ from sklearn.externals.joblib import Parallel, delayed
 class FeatureUnion(_FeatureUnion):
     
     def fit_transform(self, X, y=None, **fit_params):
+        self._validate_transformers()
         result = Parallel(n_jobs=self.n_jobs)(
-            delayed(_fit_transform_one)(trans, name, X, y, self.transformer_weights, **fit_params)
-            for name, trans in self.transformer_list)
+            delayed(_fit_transform_one)(trans, name, weight, X, y,
+                                        **fit_params)
+            for name, trans, weight in self._iter())
+
+        if not result:
+            # All transformers are None
+            return np.zeros((X.shape[0], 0))
         Xs, transformers = zip(*result)
         self._update_transformer_list(transformers)
         return self._combine(Xs)
 
     def transform(self, X):
         Xs = Parallel(n_jobs=self.n_jobs)(
-            delayed(_transform_one)(trans, name, X, self.transformer_weights)
-            for name, trans in self.transformer_list)
+            delayed(_transform_one)(trans, name, weight, X)
+            for name, trans, weight in self._iter())
+        if not Xs:
+            # All transformers are None
+            return np.zeros((X.shape[0], 0))
         return self._combine(Xs)
 
     def _combine(self, Xs):

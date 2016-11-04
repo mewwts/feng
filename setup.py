@@ -15,7 +15,7 @@ setup(
         'scipy',
         'numpy',
         'pandas',
-        'scikit-learn'
+        'scikit-learn==0.18'
     ],
     packages=[
         'feng',
