@@ -23,9 +23,12 @@ class FeatureUnion(_FeatureUnion):
 
     def _combine(self, Xs):
         if all(isinstance(obj, pd.DataFrame) for obj in Xs):
-            Xs = [pd.DataFrame(X, columns=[transformer[0] + '_' + col for col in X.columns])
-                  for X, transformer in zip(Xs, self.transformer_list)]
-            Xs = Xs[0].join(Xs[1:])
+            dfs = []
+            for X, transformer in zip(Xs, self.transformer_list):
+                df = X.copy()
+                df.columns = [transformer[0] + '_' + col for col in X.columns]
+                dfs.append(df)
+            Xs = dfs[0].join(dfs[1:])
         elif any(sparse.issparse(f) for f in Xs):
             Xs = sparse.hstack(Xs).tocsr()
         else:
