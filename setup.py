@@ -24,7 +24,6 @@ setup(
         'feng.preprocessing'
     ],
     url='https://github.com/mewwts/feng',
-    install_
     author=feng.__author__,
     author_email='mats@plysjbyen.net',
     classifiers=(
