@@ -17,20 +17,26 @@ class Identity(BaseEstimator, TransformerMixin):
         return X
 
 
-class Tests(unittest.TestCase):
+def get_identity_pipe(cols):
+    return feng.pipeline.Pipeline([('a', Identity())], cols)
 
-    identity_fu = feng.pipeline.FeatureUnion([
-        ('a', Identity()),
-        ('b', Identity())
-    ], n_jobs=1)
-
-    get_identity_pipe_fu = lambda x: feng.pipeline.FeatureUnion([
+def get_identity_pipe_fu(cols):
+    return feng.pipeline.FeatureUnion([
         ('a', feng.pipeline.Pipeline([
             ('a', Identity())
-        ], x))
+        ], cols))
     ])
 
-    get_identity_pipe = lambda x: feng.pipeline.Pipeline([('a', Identity())], x)
+
+identity_fu = feng.pipeline.FeatureUnion([
+    ('a', Identity()),
+    ('b', Identity())
+], n_jobs=1)
+
+
+
+class Tests(unittest.TestCase):
+
 
     def test_submodules_exported(self):
         submodules = ('importance', 'pipeline', 'preprocessing')
@@ -38,39 +44,39 @@ class Tests(unittest.TestCase):
         self.assertTrue(all(module in members for module in submodules))
 
     def test_feature_union_with_pandas(self):
-        transformed = self.identity_fu.transform(pd_data)
+        transformed = identity_fu.transform(pd_data)
         self.assertEqual(list(transformed.columns), ['a_a', 'a_b', 'b_a', 'b_b'])
 
     def test_feature_union_with_numpy(self):
-        transformed = self.identity_fu.transform(np_data)
+        transformed = identity_fu.transform(np_data)
         self.assertEqual(transformed.shape, (3, 4))
 
     def test_pipeline_with_pandas_select_col(self):
         cols = ['a']
-        transformed = Tests.get_identity_pipe(cols).transform(pd_data)
+        transformed = get_identity_pipe(cols).transform(pd_data)
         self.assertEqual(transformed.columns, cols)
 
     def test_pipeline_with_pandas_no_select(self):
-        transformed = Tests.get_identity_pipe(None).transform(pd_data)
+        transformed = get_identity_pipe(None).transform(pd_data)
         self.assertEqual(list(transformed.columns), list(pd_data.columns))
 
     def test_pipeline_with_numpy_select_col(self):
         cols = [1]
-        transformed = Tests.get_identity_pipe(cols).transform(np_data)
+        transformed = get_identity_pipe(cols).transform(np_data)
         self.assertTrue((transformed == np_data[:, cols]).all())
 
     def test_pipeline_with_numpy_no_select(self):
-        transformed = Tests.get_identity_pipe(None).transform(np_data)
+        transformed = get_identity_pipe(None).transform(np_data)
         self.assertTrue((transformed == np_data).all())
 
     def test_feature_union_with_pipeline_pd(self):
         cols = ['b']
-        transformed = Tests.get_identity_pipe_fu(cols).transform(pd_data)
+        transformed = get_identity_pipe_fu(cols).transform(pd_data)
         self.assertEqual(list(transformed.columns), ['a_b'])
 
     def test_feature_union_with_pipeline_np(self):
         cols = [1]
-        transformed = Tests.get_identity_pipe_fu(cols).transform(np_data)
+        transformed = get_identity_pipe_fu(cols).transform(np_data)
         self.assertTrue((transformed == np_data[:, cols]).all())
 
 
