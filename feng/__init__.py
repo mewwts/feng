@@ -1,6 +1,6 @@
-import pipeline
-import importance
-import preprocessing
+from . import pipeline
+from . import importance
+from . import preprocessing
 
 __title__ = 'feng'
 __version__ = '0.2.2'
