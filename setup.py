@@ -1,16 +1,11 @@
-try:
-    from setuptools import setup
-except ImportError:
-    from distutils.core import setup
-
-import feng
+from setuptools import setup
 
 SHORT = 'Feng is a module for feature engineering.'
 LONG = SHORT + ' For more info check out the README at \'github.com/mewwts/feng\'.'
 
 setup(
     name='feng',
-    version=feng.__version__,
+    version='0.2.4',
     install_requires=[
         'scipy',
         'numpy',
@@ -24,7 +19,7 @@ setup(
         'feng.preprocessing'
     ],
     url='https://github.com/mewwts/feng',
-    author=feng.__author__,
+    author='Alexander Svanevik, Anders Aagard, Mats Julian Olsen',
     author_email='mats@plysjbyen.net',
     classifiers=(
         'Programming Language :: Python',
