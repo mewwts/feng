@@ -6,7 +6,7 @@ from sklearn.externals.joblib import Parallel, delayed
 
 
 class FeatureUnion(_FeatureUnion):
-    
+
     def fit_transform(self, X, y=None, **fit_params):
         self._validate_transformers()
         result = Parallel(n_jobs=self.n_jobs)(
@@ -37,7 +37,7 @@ class FeatureUnion(_FeatureUnion):
                 df = X.copy()
                 df.columns = [transformer[0] + '_' + col for col in X.columns]
                 dfs.append(df)
-            Xs = dfs[0].join(dfs[1:])
+            Xs = pd.concat(dfs, axis=1)
         elif any(sparse.issparse(f) for f in Xs):
             Xs = sparse.hstack(Xs).tocsr()
         else:
