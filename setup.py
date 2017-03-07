@@ -5,12 +5,12 @@ LONG = SHORT + ' For more info check out the README at \'github.com/mewwts/feng\
 
 setup(
     name='feng',
-    version='0.2.5',
+    version='0.2.6',
     install_requires=[
         'scipy',
         'numpy',
         'pandas',
-        'scikit-learn==0.18'
+        'scikit-learn==0.18.1'
     ],
     packages=[
         'feng',
