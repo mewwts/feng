@@ -5,7 +5,7 @@ LONG = SHORT + ' For more info check out the README at \'github.com/mewwts/feng\
 
 setup(
     name='feng',
-    version='0.2.6',
+    version='0.2.7',
     install_requires=[
         'scipy',
         'numpy',
